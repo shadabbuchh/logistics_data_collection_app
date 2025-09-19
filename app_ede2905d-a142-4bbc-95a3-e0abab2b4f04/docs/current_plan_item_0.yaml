@@ -1,0 +1,43 @@
+description: 'The system shall show a list of shipments assigned to the logged-in
+  field agent sorted by urgency and pickup/delivery time.
+
+  When the agent selects a shipment from the list, the system shall open that shipment''s
+  detail view.
+
+  While the device is online, the system shall display live status badges (e.g., pending,
+  in-transit, delivered, exception) for each shipment.
+
+  Where mapping is available, the system shall show a small map preview and estimated
+  time of arrival for each shipment on the list.'
+id: '1'
+name: Active Shipments
+page_name: ActiveShipments
+sub_items:
+- description: 'When the agent opens the page, the system shall display filters (status,
+    time window, priority) and a search field that narrows the visible shipments.
+
+    When the agent applies a filter, the system shall update the list immediately
+    to show matching shipments.'
+  id: '1.1'
+  name: Shipment list with filters and sort
+- description: 'While the shipment is assigned, the system shall show a status badge
+    and ETA for each shipment on the list.
+
+    When location updates arrive, the system shall refresh the ETA and status badges
+    without requiring manual refresh.'
+  id: '1.2'
+  name: Live status badges and ETA
+- description: 'When the agent taps a quick action, the system shall perform the action
+    and provide immediate visual confirmation.
+
+    When marking delivered, the system shall transition the shipment to the delivery
+    flow (signature, time stamp, condition) as a follow-up step.'
+  id: '1.3'
+  name: Quick actions (start route, mark delivered, report issue)
+- description: 'When the agent taps a shipment entry, the system shall navigate to
+    the Shipment Detail page for that shipment.
+
+    While the detail is open, the system shall surface actions for navigation, status
+    update, and package inspection.'
+  id: '1.4'
+  name: Open shipment detail

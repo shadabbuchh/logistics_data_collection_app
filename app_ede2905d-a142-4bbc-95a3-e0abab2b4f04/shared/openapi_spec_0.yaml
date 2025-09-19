@@ -1,0 +1,177 @@
+openapi: 3.1.0
+info:
+  title: API for Active Shipments
+  version: 1.0.0
+servers:
+  - url: /api/v1
+paths:
+  /shipments:
+    get:
+      summary: List active shipments
+      operationId: listActiveShipments
+      parameters:
+        - name: status
+          in: query
+          required: false
+          description: Filter by shipment status
+          schema:
+            type: string
+        - name: timeWindow
+          in: query
+          required: false
+          description: Filter by time window
+          schema:
+            type: string
+        - name: priority
+          in: query
+          required: false
+          description: Filter by shipment priority
+          schema:
+            type: string
+        - name: search
+          in: query
+          required: false
+          description: Search shipments by keyword
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with list of shipments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shipment'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /shipments/{id}:
+    get:
+      summary: Get shipment details
+      operationId: getShipmentDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the shipment
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with shipment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentDetail'
+        '404':
+          description: Shipment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      summary: Update shipment status
+      operationId: updateShipmentStatus
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the shipment
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateShipmentStatusRequest'
+      responses:
+        '200':
+          description: Successful status update
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipment'
+        '404':
+          description: Shipment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Shipment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        urgency:
+          type: string
+        pickupTime:
+          type: string
+          format: date-time
+        deliveryTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+        eta:
+          type: string
+        mapPreview:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ShipmentDetail:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        details:
+          type: string
+        status:
+          type: string
+        history:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+                format: date-time
+              status:
+                type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    UpdateShipmentStatusRequest:
+      type: object
+      properties:
+        status:
+          type: string
+        deliveredAt:
+          type: string
+          format: date-time
+        signature:
+          type: string
+        condition:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
