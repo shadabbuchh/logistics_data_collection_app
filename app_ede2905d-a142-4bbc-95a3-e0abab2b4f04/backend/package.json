@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --import tsx --watch src/server.ts",
-    "build": "tsdown",
+    "build": "tsc --module esnext --target es2022 --moduleResolution node --outDir dist",
     "test": "NODE_OPTIONS=\"--import tsx\" npm run test:setup && vitest run",
     "test:watch": "NODE_OPTIONS=\"--import tsx\" npm run test:setup && vitest",
     "test:setup": "node --import tsx scripts/test-setup.js",
@@ -37,6 +37,7 @@
     "@vitest/coverage-istanbul": "^3.2.4",
     "any-eslint-parser": "1.0.1",
     "drizzle-kit": "^0.31.4",
+    "esbuild": "^0.25.8",
     "eslint-plugin-regex": "1.10.0",
     "eslint-plugin-text": "^1.0.1",
     "globals": "^15.0.0",
