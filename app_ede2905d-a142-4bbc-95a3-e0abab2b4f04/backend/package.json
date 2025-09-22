@@ -2,7 +2,6 @@
   "name": "@app/backend",
   "version": "0.0.1",
   "description": "",
-  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "node --import tsx --watch src/server.ts",
