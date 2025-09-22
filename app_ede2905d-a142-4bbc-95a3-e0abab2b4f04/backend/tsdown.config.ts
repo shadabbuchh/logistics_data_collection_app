@@ -3,11 +3,11 @@ import { defineConfig } from 'tsdown';
 export default defineConfig({
   entry: ['src/app.ts'],
   outDir: 'dist',
-  format: ['cjs'],
+  format: ['esm'],
   dts: false,
   clean: true,
   sourcemap: false,
-  minify: true,
+  minify: false,
   treeshake: true,
   target: 'es2022',
 });
