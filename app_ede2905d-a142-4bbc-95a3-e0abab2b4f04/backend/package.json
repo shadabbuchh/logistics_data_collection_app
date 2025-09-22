@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --import tsx --watch src/server.ts",
-    "build": "tsc",
+    "build": "tsdown",
     "test": "NODE_OPTIONS=\"--import tsx\" npm run test:setup && vitest run",
     "test:watch": "NODE_OPTIONS=\"--import tsx\" npm run test:setup && vitest",
     "test:setup": "node --import tsx scripts/test-setup.js",
