@@ -4,7 +4,7 @@ async function getApp() {
   if (!appPromise) {
     appPromise = (async () => {
       // @ts-ignore - Dynamic import of built backend app
-      const buildModule = await import("../backend/dist/src/app.js");
+      const buildModule = await import("../backend/dist/app.js");
       // Handle both default export and named export scenarios
       const build = buildModule.default || buildModule;
       const app = await build();
