@@ -3,6 +3,7 @@ let appPromise: Promise<any> | null = null;
 async function getApp() {
   if (!appPromise) {
     appPromise = (async () => {
+      // @ts-ignore - Dynamic import of built backend app
       const { default: build } = await import("../backend/dist/app.js");
       const app = await build();
       await app.ready();
