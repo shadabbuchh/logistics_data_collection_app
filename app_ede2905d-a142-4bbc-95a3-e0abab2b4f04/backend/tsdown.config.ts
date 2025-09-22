@@ -3,7 +3,7 @@ import { defineConfig } from 'tsdown';
 export default defineConfig({
   entry: ['src/app.ts'],
   outDir: 'dist',
-  format: ['esm'],
+  format: ['cjs'],
   dts: false,
   clean: true,
   sourcemap: false,
